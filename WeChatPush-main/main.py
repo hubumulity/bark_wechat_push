@@ -58,7 +58,8 @@ def getfile():
 @itchat.msg_register(itchat.content.TEXT)
 def text_reply(msg):
     print((msg.user.remarkName or msg.user.nickName) + " 说 : " + msg.text)
-    farpush.mespush((msg.user.remarkName or msg.user.nickName), msg.text)
+    if msg.user.statues == 1:
+        farpush.mespush((msg.user.remarkName or msg.user.nickName), msg.text)
 
 
 @itchat.msg_register(itchat.content.MEDIA_TYPE_MSG)
@@ -81,7 +82,8 @@ def mes_media(msg):
 
 @itchat.msg_register(itchat.content.TEXT, isGroupChat=True)
 def text_reply(msg):
-    farpush.mespush(msg.user.nickName, msg.text)
+    if msg.user.statues == 1:
+        farpush.mespush(msg.user.nickName, msg.text)
 
 
 def send(username, content):
