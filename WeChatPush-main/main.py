@@ -71,6 +71,9 @@ def text_media(msg):
     print((msg.user.remarkName or msg.user.nickName) + " 发送了 : " + msgtext)
     farpush.mespush((msg.user.remarkName or msg.user.nickName), msgtext)
 
+@itchat.msg_register(itchat.content.RECALLED)
+def send_msg_filehelper(msg):
+    farpush.mespush((msg.user.remarkName or msg.user.nickName), "撤回了一条消息")
 
 @itchat.msg_register([itchat.content.RECORDING, itchat.content.PICTURE])
 def mes_media(msg):
