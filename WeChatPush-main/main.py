@@ -58,7 +58,7 @@ def getfile():
 @itchat.msg_register(itchat.content.TEXT)
 def text_reply(msg):
     print((msg.user.remarkName or msg.user.nickName) + " 说 : " + msg.text)
-    if msg.user.statues == 1:
+    if msg.user.contactFlag == 1:
         farpush.mespush((msg.user.remarkName or msg.user.nickName), msg.text)
 
 
