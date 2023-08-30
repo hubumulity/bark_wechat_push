@@ -85,7 +85,7 @@ def mes_media(msg):
 
 @itchat.msg_register(itchat.content.TEXT, isGroupChat=True)
 def text_reply(msg):
-    if msg.user.statues == 1:
+    if msg.user.statues == 1 or msg.isAt or msg.content.find("@所有人\u2005") != -1:
         farpush.mespush(msg.user.nickName, msg.text)
 
 
