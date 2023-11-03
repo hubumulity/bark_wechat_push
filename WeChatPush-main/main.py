@@ -55,7 +55,7 @@ def getfile():
     return send_file(filename)
 
 
-@itchat.msg_register(itchat.content.TEXT)
+@itchat.msg_register(itchat.content.TEXT, isFriendChat=True)
 def text_reply(msg):
     print((msg.user.remarkName or msg.user.nickName) + " 说 : " + msg.text)
     if msg.user.contactFlag == 1:
@@ -71,7 +71,7 @@ def text_media(msg):
     print((msg.user.remarkName or msg.user.nickName) + " 发送了 : " + msgtext)
     farpush.mespush((msg.user.remarkName or msg.user.nickName), msgtext)
 
-@itchat.msg_register(itchat.content.RECALLED)
+@itchat.msg_register(itchat.content.RECALLED, isFriendChat=True)
 def send_msg_filehelper(msg):
     farpush.mespush((msg.user.remarkName or msg.user.nickName), "撤回了一条消息")
 
